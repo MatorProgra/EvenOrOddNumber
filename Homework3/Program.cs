@@ -11,9 +11,7 @@ namespace Homework3
 			int input;
 
 			while (!int.TryParse(Console.ReadLine(), out input))
-			{
 				Console.Write("Error! Wpisałeś złe dane! Spróbuj jeszcze raz: ");
-			}
 
 			string result = (input % 2 == 0) ? "parzysta" : "nieparzysta";
 
