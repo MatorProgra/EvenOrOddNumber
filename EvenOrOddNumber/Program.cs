@@ -1,32 +1,23 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
-Console.WriteLine("Program sprawdza parzystość liczb. Koniec - k.");
+Console.Write("Program sprawdza parzystość liczb. Koniec - k.\nWpisz liczbę: ");
 
 while (true)
 {
-	Console.Write("Wpisz liczbę: ");
-
-	string? input = Console.ReadLine();
-	if (string.IsNullOrWhiteSpace(input))
-	{
-		ErrorMessage();
-		continue;
+	string input;
+	while ((input = Console.ReadLine()!.ToLower()) != "k")
+	{		
+		if (int.TryParse(input, out int number))
+		{
+			string result = (number % 2 == 0) ? "parzysta" : "nieparzysta";
+			Console.WriteLine($"Twoja liczba {number} jest {result}.");
+			Console.Write("Wpisz liczbę: ");
+		}
+		else
+			Console.Write("Error! Nieprawidłowe dane! Wpisz liczbę: ");
 	}
-
-	if (input.ToLower() == "k")
-		break;
-
-	if (!int.TryParse(input, out int evenOrOdd))
-	{
-		ErrorMessage();
-		continue;
-	}
-
-	string result = (evenOrOdd % 2 == 0) ? "parzysta" : "nieparzysta";
-	Console.WriteLine($"Twoja liczba {evenOrOdd} jest {result}.");
+	break;
 }
 
 Console.WriteLine("\nKoniec programu.");
 Console.ReadLine();
-
-static void ErrorMessage() => Console.Write("Error! Nieprawidłowe dane! ");
